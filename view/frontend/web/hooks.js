@@ -7,47 +7,55 @@
  * autocomplete.js documentation: https://github.com/algolia/autocomplete.js
  **/
 
-function algoliaHookBeforeAutocompleteStart(sources, options, algoliaClient) {
-	console.log('In hook method to modify autocomplete instance');
+algolia.registerHook('beforeAutocompleteSources', function(sources, algoliaClient) {
+	console.log('In hook method to modify autocomplete data sources');
 	
-	// Modify default sources and options
+	// Modify autocomplete data sources
 	
-	return [sources, options];
-}
+	return sources;
+});
+
+algolia.registerHook('beforeAutocompleteOptions', function(options) {
+	console.log('In hook method to modify autocomplete options');
+	
+	// Modify autocomplete options
+	
+	return options;
+});
 
 /**
  * InstantSearch hook methods
  * IS.js documentation: https://community.algolia.com/instantsearch.js/v2/getting-started.html
  **/
 
-function algoliaHookBeforeInstantsearchInit(instantsearchOptions) {
+algolia.registerHook('beforeInstantsearchInit', function(instantsearchOptions) {
 	console.log('In method to modify instantsearch options');
 	
 	// Modify instant search options
 	
 	return instantsearchOptions;
-}
+});
 
-function algoliaHookBeforeWidgetInitialization(allWidgetConfiguration) {
+algolia.registerHook('beforeWidgetInitialization', function(allWidgetConfiguration) {
 	console.log('In hook method to modify instant search widgets');
 	
 	// Modify instant search widgets
 	
 	return allWidgetConfiguration;
-}
+});
 
-function algoliaHookBeforeInstantsearchStart(search) {
+algolia.registerHook('beforeInstantsearchStart', function(search) {
 	console.log('In hook method to modify instant search instance before search started');
 	
 	// Modify instant search instance before search started
 	
 	return search;
-}
+});
 
-function algoliaHookAfterInstantsearchStart(search) {
+algolia.registerHook('afterInstantsearchStart', function(search) {
 	console.log('In hook method to modify instant search instance after search started');
 	
 	// Modify instant search instance after search started
 	
 	return search;
-}
+});
