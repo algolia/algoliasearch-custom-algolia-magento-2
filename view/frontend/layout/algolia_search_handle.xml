@@ -9,12 +9,6 @@
 
         <!-- Uncomment the following line to load your custom CSS file -->
         <!-- <css src="Algolia_CustomAlgolia::customalgolia.css" /> -->
-
-        <!-- Uncomment the following line to remove the main algolia autocomplete.js file -->
-        <!-- <remove src="Algolia_AlgoliaSearch::autocomplete.js" /> -->
-
-        <!-- Uncomment the following line to load your custom autocomplete.js file -->
-        <!-- <script src="Algolia_CustomAlgolia::autocomplete.js" /> -->
     </head>
     <body>
         <referenceBlock name="before.body.end">

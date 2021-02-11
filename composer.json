@@ -3,9 +3,9 @@
   "description": "Custom boilerplate module to extend Algolia Magento 2 extension",
   "type": "magento2-module",
   "license": ["MIT"],
-  "version": "1.0.1",
+  "version": "1.1.0",
   "require": {
-    "algolia/algoliasearch-magento-2": ">=1.7.0@dev"
+    "algolia/algoliasearch-magento-2": ">=1.13.3"
   },
   "autoload": {
     "files": [ "registration.php" ],
