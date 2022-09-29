@@ -9,10 +9,12 @@
 
 ## Installation
 
-The template module can be installed via [Composer](https://getcomposer.org/):
+The template module can be installed via Manually:
 
 ```sh
-$ cd /path/to/your/magento2/directory
-$ composer require algolia/algoliasearch-custom-algolia-magento-2
+$ cd /path/to/your/magento2/directory/app/code
+$ Create a directory in app/code as Algolia/CustomAlgolia 
+$ Download the file from https://github.com/algolia/algoliasearch-custom-algolia-magento-2/ and unzip 
+$ Upload the unzip files in app/code/Algolia/CustomAlgolia
 $ php bin/magento setup:upgrade
 ```
