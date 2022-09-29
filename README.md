@@ -9,7 +9,7 @@
 
 ## Installation
 
-The template module can be installed via Manually:
+The template module can be installed Manually:
 
 ```sh
 $ cd /path/to/your/magento2/directory/app/code
