@@ -4,7 +4,7 @@ define(function () {
 
   const mixin = {
     getHeaderHtml: function () {
-      return "This suggstions template was customized!";
+      return "This suggestions template was customized!";
     },
   };
 
