@@ -2,15 +2,20 @@
   "name": "algolia/algoliasearch-custom-algolia-magento-2",
   "description": "Custom boilerplate module to extend Algolia Magento 2 extension",
   "type": "magento2-module",
-  "license": ["MIT"],
-  "version": "1.1.0",
+  "license": [
+    "MIT"
+  ],
+  "version": "1.2.0",
   "require": {
-    "algolia/algoliasearch-magento-2": ">=1.13.3"
+    "algolia/algoliasearch-magento-2": "^3.9.0",
+    "magento/magento-composer-installer": "*"
   },
-  "autoload": {
-    "files": [ "registration.php" ],
-    "psr-4": {
-      "Algolia\\CustomAlgolia\\": ""
-    }
+  "extra": {
+    "map": [
+      [
+        "*",
+        "Algolia/CustomAlgolia"
+      ]
+    ]
   }
 }
