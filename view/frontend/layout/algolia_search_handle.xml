@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <!-- Uncomment the following line to include files with front-end hook methods -->
-        <!-- <script src="Algolia_CustomAlgolia::hooks.js" /> -->
-
         <!-- Uncomment the following line to remove the main algolia CSS file -->
         <!-- <remove src="Algolia_AlgoliaSearch::internals/algoliasearch.css" /> -->
 
