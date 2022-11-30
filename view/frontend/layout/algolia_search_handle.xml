@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <!-- Uncomment the following line to include files with front-end hook methods -->
-        <!-- <script src="Algolia_CustomAlgolia::hooks.js" /> -->
-
         <!-- Uncomment the following line to remove the main algolia CSS file -->
         <!-- <remove src="Algolia_AlgoliaSearch::internals/algoliasearch.css" /> -->
 
@@ -12,11 +9,23 @@
     </head>
     <body>
         <referenceBlock name="before.body.end">
-            <!-- Uncomment the following line to declare a new template -->
-            <!-- <block class="Magento\Framework\View\Element\Template" name="custom.autocomplete.template" template="Algolia_CustomAlgolia::autocomplete/custom.phtml"/> -->
+            <!-- 
+                Uncomment the following lines to override the default InstantSearch widget templates.
+                
+                NOTE: Only a sample facet.phtml file is supplied in this starter kit.
+                      If you wish to override other templates be sure to implement your template based on 
+                      vendor/algolia/algoliasearch-magento-2/view/frontend/templates/instant 
+            -->
+            <!-- <referenceBlock name="algolia.instant.facet" template="Algolia_CustomAlgolia::instant/facet.phtml"/> -->
+            <!-- <referenceBlock name="algolia.instant.refinements" template="Algolia_CustomAlgolia::instant/refinements.phtml"/> -->
+            <!-- <referenceBlock name="algolia.instant.hit" template="Algolia_CustomAlgolia::instant/hit.phtml"/> -->
+            <!-- <referenceBlock name="algolia.instant.stats" template="Algolia_CustomAlgolia::instant/stats.phtml"/> -->
 
-            <!-- Uncomment the following line to override the autocomplete/page template -->
-            <!-- <referenceBlock name="algolia.autocomplete.page" template="Algolia_CustomAlgolia::autocomplete/page.phtml" /> -->
+            <!-- 
+                IMPORTANT!
+                If you are looking to customize Autocomplete this functionality has moved as of v3.9.1! 
+                (See requirejs-config.js for details) 
+            -->
         </referenceBlock>
     </body>
 </page>

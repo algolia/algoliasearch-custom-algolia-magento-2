@@ -4,17 +4,17 @@
 
 ## Guides
 
-* [Backend custom events](https://community.algolia.com/magento/doc/m2/backend/)
-* [Frontend custom events](https://community.algolia.com/magento/doc/m2/frontend-events/)
+- [Backend custom events](https://community.algolia.com/magento/doc/m2/backend/)
+- [Frontend custom events](https://community.algolia.com/magento/doc/m2/frontend-events/)
 
 ## Installation
 
-The template module can be installed Manually:
+The template module can be installed via [Composer](https://getcomposer.org/):
 
 ```sh
-$ cd /path/to/your/magento2/directory/app/code
-$ Create a directory in app/code as Algolia/CustomAlgolia 
-$ Download the file from https://github.com/algolia/algoliasearch-custom-algolia-magento-2/ and unzip 
-$ Copy the unzip files in to app/code/Algolia/CustomAlgolia
+$ cd /path/to/your/magento2/directory
+$ composer require algolia/algoliasearch-custom-algolia-magento-2
 $ php bin/magento setup:upgrade
 ```
+
+> Please note that this is a starter module. Composer will install this code to your local `app/code` directory where you can make further modifications to the implementation and commit to your own project repository.
