@@ -5,7 +5,7 @@
   "license": [
     "MIT"
   ],
-  "version": "1.2.0",
+  "version": "1.2.1",
   "require": {
     "algolia/algoliasearch-magento-2": "^3.9.1",
     "magento/magento-composer-installer": "*"

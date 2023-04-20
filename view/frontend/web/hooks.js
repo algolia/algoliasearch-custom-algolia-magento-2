@@ -5,6 +5,10 @@
 /**
  * Autocomplete hook method
  * autocomplete.js documentation: https://github.com/algolia/autocomplete.js
+ *
+ * NOTE: This module is for demonstration purposes only and is intended to show how front end event hooks might be used.
+ * Be mindful that introducing things like new sources and plugins can affect the layout of your final render.
+ * Utilize DOM or CSS to control the final presentation as needed.
  **/
 
 // NOTE: The algoliaRecentSearches dependency is optional and is only supplied for demonstration of inclusion of the recent searches plugin
@@ -17,7 +21,7 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
 ) {
 
     algolia.registerHook(
-        "afterAutocompleteSources",
+        "afterAutocompleteSources", //after
         function (sources, searchClient) {
             console.log("In hook method to modify autocomplete data sources");
 
@@ -26,11 +30,12 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
 
             // Modify autocomplete data sources
 
-            // Add new source
             /*
+            // Add new source
             sources.push({
                 sourceId : "custom-source",
-                indexName: '<your_custom_index>',
+                // Use algoliaConfig.indexName to utilize index prefix by store scope
+                indexName: // algoliaConfig.indexName + '_<your_custom_index>',
                 options  : {hitsPerPage: 3},
                 // templates: null,
                 templates: {
@@ -114,15 +119,15 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
                     }
                 }
             }
-        // });
+        });
+        */
 
 
-        // Replace existing plugins completely (to replace query suggestions)
+        // Replace existing plugins completely (e.g. to replace query suggestions)
         // return [recentSearchesPlugin];
 
-        // or add to existing plugins (requires additional formatting)
+        // or add to existing plugins (requires additional front end formatting via CSS etc.)
         // plugins.unshift(recentSearchesPlugin);
-        */
 
         return plugins;
     });
@@ -131,7 +136,7 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
         console.log("In hook method to modify autocomplete options");
 
         // Modify autocomplete options
-        // options.foo = "bar";
+        // options.openOnFocus = true;
 
         return options;
     });
