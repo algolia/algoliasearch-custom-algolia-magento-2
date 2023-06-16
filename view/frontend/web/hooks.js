@@ -88,8 +88,8 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
                             header({html, items}) {
                                 return suggestionsHtml.getHeaderHtml({html});
                             },
-                            item({item, html}) {
-                                return suggestionsHtml.getItemHtml({item, html})
+                            item({item, components, html}) {
+                                return suggestionsHtml.getItemHtml({item, components, html})
                             },
                             footer({html, items}) {
                                 return suggestionsHtml.getFooterHtml({html})
