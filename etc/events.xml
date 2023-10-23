@@ -6,4 +6,7 @@
     <event name="algolia_products_index_before_set_settings">
         <observer name="customalgolia_products_settings" instance="Algolia\CustomAlgolia\Observer\UpdateProductsSettings" />
     </event>
+    <event name="algolia_after_create_product_object">
+        <observer name="customalgolia_product_object" instance="Algolia\CustomAlgolia\Observer\UpdateProductData" />
+    </event>
 </config>
