@@ -24,7 +24,6 @@ class UpdateProductData implements ObserverInterface
         $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/customAlgoliaDebugger.log');
         $logger = new \Zend_Log();
         $logger->addWriter($writer);
-        echo $string; exit();
         $logger->info('Custom Algolia Logger: '.$string);
     }
 }
