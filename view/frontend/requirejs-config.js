@@ -19,7 +19,7 @@ const config = {
             algoliaHooks: 'Algolia_CustomAlgolia/js/hooks',
 
             // Additional lib for recent searches plugin - OPTIONAL
-            algoliaRecentSearches: 'Algolia_CustomAlgolia/js/autocomplete-plugin-recent-searches'
+            algoliaRecentSearches: 'Algolia_CustomAlgolia/js/internals/autocomplete-plugin-recent-searches'
 
             ////////////////////////////////////
             // AUTOCOMPLETE TEMPLATE OVERRIDE //
