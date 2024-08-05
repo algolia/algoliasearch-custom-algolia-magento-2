@@ -42,19 +42,19 @@ const config = {
     config: {
         mixins: {
             // Uncomment the following mixins to override the hit template via a JavaScript mixin for a given source
-            "Algolia_AlgoliaSearch/js/internals/template/autocomplete/products": {
+            "Algolia_AlgoliaSearch/js/template/autocomplete/products": {
               "Algolia_CustomAlgolia/js/template/autocomplete/products-mixin": true,
             }
-            // "Algolia_AlgoliaSearch/js/internals/template/autocomplete/categories": {
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/categories": {
             //   "Algolia_CustomAlgolia/js/template/autocomplete/categories-mixin": true,
             // },
-            // "Algolia_AlgoliaSearch/js/internals/template/autocomplete/pages": {
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/pages": {
             //   "Algolia_CustomAlgolia/js/template/autocomplete/pages-mixin": true,
             // },
-            // "Algolia_AlgoliaSearch/js/internals/template/autocomplete/additional-section": {
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/additional-section": {
             //   "Algolia_CustomAlgolia/js/template/autocomplete/additional-section-mixin": true,
             // },
-            // "Algolia_AlgoliaSearch/js/internals/template/autocomplete/suggestions": {
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/suggestions": {
             //   "Algolia_CustomAlgolia/js/template/autocomplete/suggestions-mixin": true,
             // },
         },
