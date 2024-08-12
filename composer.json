@@ -7,7 +7,7 @@
   ],
   "version": "1.2.2",
   "require": {
-    "algolia/algoliasearch-magento-2": "^3.9.1",
+    "algolia/algoliasearch-magento-2": "^3.14.0",
     "magento/magento-composer-installer": "*"
   },
   "extra": {
