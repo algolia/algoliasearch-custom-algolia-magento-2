@@ -16,17 +16,17 @@ const config = {
     map: {
         "*": {
             // Include your own hooks to handle front end events - see https://www.algolia.com/doc/integration/magento-2/customize/custom-front-end-events/
-            algoliaHooks: 'Algolia_CustomAlgolia/hooks',
+            algoliaHooks: 'Algolia_CustomAlgolia/js/hooks',
 
             // Additional lib for recent searches plugin - OPTIONAL
-            algoliaRecentSearches: 'Algolia_CustomAlgolia/autocomplete-plugin-recent-searches'
+            algoliaRecentSearches: 'Algolia_CustomAlgolia/js/internals/autocomplete-plugin-recent-searches'
 
             ////////////////////////////////////
             // AUTOCOMPLETE TEMPLATE OVERRIDE //
             ////////////////////////////////////
 
             // Uncomment the following line to override the products.js functional template
-            // productsHtml: 'Algolia_CustomAlgolia/internals/template/autocomplete/products'
+            // productsHtml: 'Algolia_CustomAlgolia/js/internals/template/autocomplete/products'
         },
     },
 
@@ -42,20 +42,20 @@ const config = {
     config: {
         mixins: {
             // Uncomment the following mixins to override the hit template via a JavaScript mixin for a given source
-            // "Algolia_AlgoliaSearch/internals/template/autocomplete/products": {
-            //   "Algolia_CustomAlgolia/template/autocomplete/products-mixin": true,
+            "Algolia_AlgoliaSearch/js/template/autocomplete/products": {
+              "Algolia_CustomAlgolia/js/template/autocomplete/products-mixin": true,
+            }
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/categories": {
+            //   "Algolia_CustomAlgolia/js/template/autocomplete/categories-mixin": true,
             // },
-            // "Algolia_AlgoliaSearch/internals/template/autocomplete/categories": {
-            //   "Algolia_CustomAlgolia/template/autocomplete/categories-mixin": true,
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/pages": {
+            //   "Algolia_CustomAlgolia/js/template/autocomplete/pages-mixin": true,
             // },
-            // "Algolia_AlgoliaSearch/internals/template/autocomplete/pages": {
-            //   "Algolia_CustomAlgolia/template/autocomplete/pages-mixin": true,
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/additional-section": {
+            //   "Algolia_CustomAlgolia/js/template/autocomplete/additional-section-mixin": true,
             // },
-            // "Algolia_AlgoliaSearch/internals/template/autocomplete/additional-section": {
-            //   "Algolia_CustomAlgolia/template/autocomplete/additional-section-mixin": true,
-            // },
-            // "Algolia_AlgoliaSearch/internals/template/autocomplete/suggestions": {
-            //   "Algolia_CustomAlgolia/template/autocomplete/suggestions-mixin": true,
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/suggestions": {
+            //   "Algolia_CustomAlgolia/js/template/autocomplete/suggestions-mixin": true,
             // },
         },
     },
