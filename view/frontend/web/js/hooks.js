@@ -16,7 +16,7 @@ define([
     'jquery',
     'algoliaAnalytics',
     'algoliaQuerySuggestionsPluginLib',
-    'suggestionsHtml',
+    'algoliaAutocompleteSuggestionsHtml',
     'algoliaRecentSearches',
     'algoliaCommon'
 ], function (
