@@ -12,10 +12,17 @@
  **/
 
 // NOTE: The algoliaRecentSearches dependency is optional and is only supplied for demonstration of inclusion of the recent searches plugin
-define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algoliaRecentSearches', 'algoliaCommon'], function (
+define([
+    'jquery',
+    'algoliaAnalytics',
+    'algoliaQuerySuggestionsPluginLib',
+    'suggestionsHtml',
+    'algoliaRecentSearches',
+    'algoliaCommon'
+], function (
     $,
     algoliaAnalyticsWrapper,
-    algoliaBundle,
+    querySuggestionsPlugin,
     suggestionsHtml,
     algoliaRecentSearches
 ) {
@@ -68,7 +75,7 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
         const pluginIndex = plugins.findIndex(plugin => plugin.name === 'aa.querySuggestionsPlugin');
         if (pluginIndex > -1) {
             // Replace the entire plugin
-            plugins[pluginIndex] = algoliaBundle.createQuerySuggestionsPlugin.createQuerySuggestionsPlugin({
+            plugins[pluginIndex] = querySuggestionsPlugin.createQuerySuggestionsPlugin({
                 searchClient,
                 // Build your suggestions index per https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/query-suggestions/js/#implementing-query-suggestions
                 indexName: '<your_query_suggestions_index>',
@@ -149,7 +156,7 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
 
     algolia.registerHook(
         "beforeInstantsearchInit",
-        function (instantsearchOptions, algoliaBundle) {
+        function (instantsearchOptions) {
             console.log("In method to modify instantsearch options");
 
             // Modify instant search options
@@ -160,7 +167,7 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
 
     algolia.registerHook(
         "beforeWidgetInitialization",
-        function (allWidgetConfiguration, algoliaBundle) {
+        function (allWidgetConfiguration) {
             console.log("In hook method to modify instant search widgets");
 
             // Modify instant search widgets
@@ -171,7 +178,7 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
 
     algolia.registerHook(
         "beforeInstantsearchStart",
-        function (search, algoliaBundle) {
+        function (search) {
             console.log(
                 "In hook method to modify instant search instance before search started"
             );
@@ -184,7 +191,7 @@ define(['jquery', 'algoliaAnalytics', 'algoliaBundle', 'suggestionsHtml', 'algol
 
     algolia.registerHook(
         "afterInstantsearchStart",
-        function (search, algoliaBundle) {
+        function (search) {
             console.log(
                 "In hook method to modify instant search instance after search started"
             );
