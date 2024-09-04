@@ -42,9 +42,9 @@ const config = {
     config: {
         mixins: {
             // Uncomment the following mixins to override the hit template via a JavaScript mixin for a given source
-            "Algolia_AlgoliaSearch/js/template/autocomplete/products": {
-              "Algolia_CustomAlgolia/js/template/autocomplete/products-mixin": true,
-            }
+            // "Algolia_AlgoliaSearch/js/template/autocomplete/products": {
+            //   "Algolia_CustomAlgolia/js/template/autocomplete/products-mixin": true,
+            // },
             // "Algolia_AlgoliaSearch/js/template/autocomplete/categories": {
             //   "Algolia_CustomAlgolia/js/template/autocomplete/categories-mixin": true,
             // },
@@ -57,6 +57,11 @@ const config = {
             // "Algolia_AlgoliaSearch/js/template/autocomplete/suggestions": {
             //   "Algolia_CustomAlgolia/js/template/autocomplete/suggestions-mixin": true,
             // },
+
+            // Uncomment the following mixin to change the template parsing engine from Mustache to Hogan
+            // "Algolia_AlgoliaSearch/js/internals/template-engine": {
+            //     "Algolia_CustomAlgolia/js/internals/template-engine-mixin": true,
+            // }
         },
     },
 };
