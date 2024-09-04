@@ -14,7 +14,7 @@
 // NOTE: The algoliaRecentSearches dependency is optional and is only supplied for demonstration of inclusion of the recent searches plugin
 define([
     'jquery',
-    'algoliaAnalytics',
+    'algoliaAnalyticsLib',
     'algoliaQuerySuggestionsPluginLib',
     'algoliaAutocompleteSuggestionsHtml',
     'algoliaRecentSearches',
