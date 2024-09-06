@@ -61,7 +61,12 @@ const config = {
             // Uncomment the following mixin to change the template parsing engine from Mustache to Hogan
             // "Algolia_AlgoliaSearch/js/internals/template-engine": {
             //     "Algolia_CustomAlgolia/js/internals/template-engine-mixin": true,
+            // },
+
+            // Uncomment the following mixin to add libraries to the algoliaBundle used in front end hooks (Legacy support feature)
+            // "Algolia_AlgoliaSearch/js/instantsearch": {
+            //     "Algolia_CustomAlgolia/js/instantsearch-mixin": true,
             // }
         },
-    },
+    }
 };
