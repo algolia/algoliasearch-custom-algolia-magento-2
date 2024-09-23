@@ -66,7 +66,15 @@ const config = {
             // Uncomment the following mixin to add libraries to the algoliaBundle used in front end hooks (Legacy support feature)
             // "Algolia_AlgoliaSearch/js/instantsearch": {
             //     "Algolia_CustomAlgolia/js/instantsearch-mixin": true,
-            // }
+            // },
+
+            "Algolia_AlgoliaSearch/js/autocomplete": {
+                "Algolia_CustomAlgolia/js/autocomplete-mixin": true,
+            },
+
+            "Algolia_AlgoliaSearch/js/internals/common": {
+                "Algolia_CustomAlgolia/js/internals/common-mixin": true,
+            },
         },
     }
 };
