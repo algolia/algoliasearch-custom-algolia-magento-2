@@ -3,33 +3,42 @@
  **/
 
 /**
- * Autocomplete hook method
- * autocomplete.js documentation: https://github.com/algolia/autocomplete.js
- *
  * NOTE: This module is for demonstration purposes only and is intended to show how front end event hooks might be used.
  * Be mindful that introducing things like new sources and plugins can affect the layout of your final render.
  * Utilize DOM or CSS to control the final presentation as needed.
  **/
 
-// NOTE: The algoliaRecentSearches dependency is optional and is only supplied for demonstration of inclusion of the recent searches plugin
+/**
+ * Inject your dependencies as needed
+ * e.g. algoliaRecentSearchesPluginLib are only supplied for demonstration of inclusion of the recent searches plugin
+ */
 define([
     'jquery',
-    'algoliaAnalyticsLib',
+    'algoliaCommon',
+    'algoliaInstantSearchLib', // inject core Algolia frontend libraries as needed
     'algoliaQuerySuggestionsPluginLib',
     'algoliaAutocompleteSuggestionsHtml',
-    'algoliaRecentSearches',
-    'algoliaCommon'
+    'algoliaRecentSearchesPluginLib'
 ], function (
     $,
-    algoliaAnalyticsWrapper,
+    algolia,
+    instantsearch,
     querySuggestionsPlugin,
     suggestionsHtml,
     algoliaRecentSearches
 ) {
 
+    //////////////////////////////////
+    //      AUTOCOMPLETE HOOKS      //
+    //////////////////////////////////
+
+    /**
+     * Autocomplete documentation: https://github.com/algolia/autocomplete 
+     */
+
     algolia.registerHook(
-        "afterAutocompleteSources", //after
-        function (sources, searchClient) {
+        "afterAutocompleteSources",
+        (sources, searchClient) => {
             console.log("In hook method to modify autocomplete data sources");
 
             // Use the global window variable `algoliaConfig` to see what has been configured in the system configuration
@@ -68,89 +77,99 @@ define([
         }
     );
 
-    algolia.registerHook('afterAutocompletePlugins', (plugins, searchClient) => {
-        // Modify an existing plugin like Query Suggestions (use Algolia instead of Magento)
-        // See https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/query-suggestions/js/
-        /*
-        const pluginIndex = plugins.findIndex(plugin => plugin.name === 'aa.querySuggestionsPlugin');
-        if (pluginIndex > -1) {
-            // Replace the entire plugin
-            plugins[pluginIndex] = querySuggestionsPlugin.createQuerySuggestionsPlugin({
-                searchClient,
-                // Build your suggestions index per https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/query-suggestions/js/#implementing-query-suggestions
-                indexName: '<your_query_suggestions_index>',
-                getSearchParams() {
-                    return {hitsPerPage: algoliaConfig.autocomplete.nbOfProductsSuggestions};
-                },
+    algolia.registerHook(
+        'afterAutocompletePlugins', 
+        (plugins, searchClient) => {
+            console.log("In hook method to modify autocomplete plugins");
+
+            // Modify an existing plugin like Query Suggestions (use Algolia instead of Magento)
+            // See https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/query-suggestions/js/
+            /*
+            const pluginIndex = plugins.findIndex(plugin => plugin.name === 'aa.querySuggestionsPlugin');
+            if (pluginIndex > -1) {
+                // Replace the entire plugin
+                plugins[pluginIndex] = querySuggestionsPlugin.createQuerySuggestionsPlugin({
+                    searchClient,
+                    // Build your suggestions index per https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/query-suggestions/js/#implementing-query-suggestions
+                    indexName: '<your_query_suggestions_index>',
+                    getSearchParams() {
+                        return {hitsPerPage: algoliaConfig.autocomplete.nbOfProductsSuggestions};
+                    },
+                    transformSource({source}) {
+                        return {
+                            ...source,
+                            getItemUrl({item}) {
+                                return algoliaConfig.resultPageUrl + `?q=${item.query}`;
+                            },
+                            templates: {
+                                noResults({html}) {
+                                    return suggestionsHtml.getNoResultHtml({html});
+                                },
+                                header({html, items}) {
+                                    return suggestionsHtml.getHeaderHtml({html});
+                                },
+                                item({item, components, html}) {
+                                    return suggestionsHtml.getItemHtml({item, components, html})
+                                },
+                                footer({html, items}) {
+                                    return suggestionsHtml.getFooterHtml({html})
+                                },
+                            },
+                        };
+                    },
+                });
+            }
+            */
+
+            // Install a new plugin like "recent searches"
+            // See: https://www.algolia.com/doc/ui-libraries/autocomplete/api-reference/autocomplete-plugin-recent-searches/createLocalStorageRecentSearchesPlugin/
+            /*
+            const recentSearchesPlugin = algoliaRecentSearches.createLocalStorageRecentSearchesPlugin({
+                key: 'navbar',
                 transformSource({source}) {
                     return {
                         ...source,
-                        getItemUrl({item}) {
-                            return algoliaConfig.resultPageUrl + `?q=${item.query}`;
-                        },
                         templates: {
-                            noResults({html}) {
-                                return suggestionsHtml.getNoResultHtml({html});
-                            },
-                            header({html, items}) {
-                                return suggestionsHtml.getHeaderHtml({html});
-                            },
-                            item({item, components, html}) {
-                                return suggestionsHtml.getItemHtml({item, components, html})
-                            },
-                            footer({html, items}) {
-                                return suggestionsHtml.getFooterHtml({html})
-                            },
-                        },
-                    };
-                },
-            });
-        }
-        */
-
-        // Install a new plugin like "recent searches"
-        // See: https://www.algolia.com/doc/ui-libraries/autocomplete/api-reference/autocomplete-plugin-recent-searches/createLocalStorageRecentSearchesPlugin/
-        /*
-        const recentSearchesPlugin = algoliaRecentSearches.createLocalStorageRecentSearchesPlugin({
-            key: 'navbar',
-            transformSource({source}) {
-                return {
-                    ...source,
-                    templates: {
-                        ...source.templates,
-                        header: () => 'Recent searches',
-                        item: ({item, html}) => {
-                            // console.log("Item:", item);
-                            return html`<a class="aa-ItemLink" href="${algoliaConfig.resultPageUrl}?q=${encodeURIComponent(item.label)}">${item.label}</a>`;
+                            ...source.templates,
+                            header: () => 'Recent searches',
+                            item: ({item, html}) => {
+                                // console.log("Item:", item);
+                                return html`<a class="aa-ItemLink" href="${algoliaConfig.resultPageUrl}?q=${encodeURIComponent(item.label)}">${item.label}</a>`;
+                            }
                         }
                     }
                 }
-            }
-        });
-        */
+            });
+            */
 
+            // Replace existing plugins completely (e.g. to replace query suggestions)
+            // return [recentSearchesPlugin];
 
-        // Replace existing plugins completely (e.g. to replace query suggestions)
-        // return [recentSearchesPlugin];
+            // or add to existing plugins (requires additional front end formatting via CSS etc.)
+            // plugins.unshift(recentSearchesPlugin);
 
-        // or add to existing plugins (requires additional front end formatting via CSS etc.)
-        // plugins.unshift(recentSearchesPlugin);
+            return plugins;
+        }
+    );
 
-        return plugins;
-    });
+    algolia.registerHook(
+        "afterAutocompleteOptions", 
+        (options) => {
+            console.log("In hook method to modify autocomplete options");
 
-    algolia.registerHook("afterAutocompleteOptions", function (options) {
-        console.log("In hook method to modify autocomplete options");
+            // Modify autocomplete options
+            // options.openOnFocus = true;
 
-        // Modify autocomplete options
-        // options.openOnFocus = true;
+            return options;
+        }
+    );
 
-        return options;
-    });
+    //////////////////////////////////
+    //     INSTANTSEARCH HOOKS      //
+    //////////////////////////////////
 
     /**
      * InstantSearch hook methods
-     * IS.js v2 documentation: https://community.algolia.com/instantsearch.js/
      * IS.js v4 documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/
      **/
 
@@ -167,10 +186,14 @@ define([
 
     algolia.registerHook(
         "beforeWidgetInitialization",
-        function (allWidgetConfiguration) {
+        function (allWidgetConfiguration, algoliaBundle) {
             console.log("In hook method to modify instant search widgets");
 
-            // Modify instant search widgets
+            // Here you can modify the instant search widgets configuration before InstantSearch is initialized
+
+            // The algoliaBundle has been discontinued in the core extension and its use in frontend hooks is accordingly deprecated
+            // If the bundle is still needed, a lightweight version can be accessed in 3.15.0
+            console.log("Algolia bundle:", algoliaBundle);
 
             return allWidgetConfiguration;
         }
