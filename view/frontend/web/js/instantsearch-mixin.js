@@ -1,5 +1,5 @@
 // SAMPLE INSTANTSEARCH MIXIN
-define(['uiComponent', 'algoliaHoganLib'], function (Component, Hogan) {
+define(['algoliaHoganLib'], function (Hogan) {
     "use strict";
 
     return function (target) {

@@ -207,6 +207,12 @@ define([
             );
 
             // Modify instant search instance before search started
+            // For instance you can add a secondary set of hits to your InstantSearch UI
+            search.addWidgets([
+                instantsearch.widgets.hits({
+                    container: '#custom-second-hits', // This element must be present in the DOM - can be added via wrapper.phtml
+                })
+            ]);
 
             return search;
         }
