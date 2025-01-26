@@ -180,6 +180,7 @@ define([
             console.log("In method to modify InstantSearch options");
 
             // Modify instant search options
+            // console.log("InstantSearch options:", instantsearchOptions);
 
             return instantsearchOptions;
         }
