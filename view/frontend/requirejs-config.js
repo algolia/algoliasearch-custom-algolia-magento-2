@@ -5,22 +5,33 @@
 /**
  * This starter file provides a means to override the Algolia search experience using RequireJS.
  *
- *
- *
- * You can customize Autocomplete in 2 ways:
- *   1. Via a complete override of the underlying functional template
- *   2. Via a JavaScript mixin (recommended)
+ * You can customize Algolia's JavaScript in one of 3 ways:
+ *   1. Via a complete override of the underlying dependency
+ *   2. Via a JavaScript mixin (recommended especially for templates)
+ *   3. Via front end custom events (hooks.js is included to demonstrate how to handle custom front end events)
  */
-
 const config = {
     map: {
         "*": {
             // Include your own hooks to handle front end events - see https://www.algolia.com/doc/integration/magento-2/customize/custom-front-end-events/
             algoliaHooks: 'Algolia_CustomAlgolia/js/hooks',
 
-            // Additional lib for recent searches plugin
-            // How this might be used is demonstrated in hooks.js using `afterAutocompletePlugins` event
-            algoliaRecentSearches: 'Algolia_CustomAlgolia/js/internals/autocomplete-plugin-recent-searches'
+            // Add any dependencies you might need for your own customizations
+            // For instance, this lib supplies the "recent searches" plugin
+            // How this might be used is demonstrated in hooks.js using the `afterAutocompletePlugins` event
+            algoliaRecentSearchesPluginLib: 'Algolia_CustomAlgolia/js/lib/autocomplete-plugin-recent-searches',
+
+            ////////////////////////////////////
+            // ALGOLIA FRONTEND LIB OVERRIDE  //
+            ////////////////////////////////////
+
+            // Uncomment to load your own specific version of InstantSearch e.g. 4.65.0
+            // algoliaInstantSearchLib: 'Algolia_CustomAlgolia/js/lib/algolia-instantsearch.local.min',
+
+            /**
+             * This can be done for other libraries as well such as Autocomplete, Recommend etc.
+             * Check the `lib` directory in the core module for versioned dependency source files
+             */
 
             ////////////////////////////////////
             // AUTOCOMPLETE TEMPLATE OVERRIDE //
@@ -31,16 +42,18 @@ const config = {
         },
     },
 
-    /**
-     *  You can add a mixin to customize only a single portion of a template based on the corresponding function.
-     *  Use the `html` tagged template literal supplied via the function arguments to return your custom content as HTML.
-     */
-
     config: {
+        // Use mixins where possible to only override *specific functions* within the Algolia implementation
+        // This makes upgrades easier in the future since you will not have to merge all changes into your template overrides
         mixins: {
             //////////////////////////////////
             // AUTOCOMPLETE TEMPLATE MIXINS //
             //////////////////////////////////
+
+            /**
+             *  You can add a mixin to customize only a single portion of a template based on the corresponding function.
+             *  Use the `html` tagged template literal supplied via the function arguments to return your custom content as HTML.
+             */
 
             // Uncomment the following mixins to override the hit template via a JavaScript mixin for a given source
             // "Algolia_AlgoliaSearch/js/template/autocomplete/products": {
@@ -63,7 +76,7 @@ const config = {
             //  OTHER AUTOCOMPLETE MIXINS   //
             //////////////////////////////////
 
-            // Uncomment the following to see a demonstration of how you can modify the logic behind how Autocomplete functions
+            // Uncomment the following mixin to see a demonstration of how you can modify the logic behind how Autocomplete functions
             // "Algolia_AlgoliaSearch/js/autocomplete": {
             //     "Algolia_CustomAlgolia/js/autocomplete-mixin": true,
             // },
@@ -72,10 +85,11 @@ const config = {
             //     INSTANTSEARCH MIXINS     //
             //////////////////////////////////
 
-            // Uncomment the following mixin to add libraries to the algoliaBundle used in front end hooks (Legacy support feature)
-            "Algolia_AlgoliaSearch/js/instantsearch": {
-                "Algolia_CustomAlgolia/js/instantsearch-mixin": true,
-            },
+            // Uncomment the following mixin to see a demonstration of how you can modify the logic behind how InstantSearch functions
+            // Some examples include: Changing runtime behaviors and adding libraries to the algoliaBundle used in legacy front end hooks
+            // "Algolia_AlgoliaSearch/js/instantsearch": {
+            //     "Algolia_CustomAlgolia/js/instantsearch-mixin": true,
+            // },
 
             //////////////////////////////////
             //     INTERNAL LIB MIXINS      //
