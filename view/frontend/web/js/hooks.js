@@ -202,6 +202,17 @@ define([
     );
 
     algolia.registerHook(
+        "beforeWidgetInitialization",
+        function (allWidgetConfiguration) {
+            console.log("In hook method to modify instant search widgets:", allWidgetConfiguration);
+            const rangeSlider = allWidgetConfiguration.rangeSlider[0];
+            rangeSlider.panelOptions.templates.header = `<div class="name price-slider-label">Price slider customized</div>`;
+            rangeSlider.panelOptions.templates.footer = "Hi! I'm a panel footer 🦶";
+            return allWidgetConfiguration;
+        }
+    );
+
+    algolia.registerHook(
         "beforeInstantsearchStart",
         function (search) {
             console.log(
