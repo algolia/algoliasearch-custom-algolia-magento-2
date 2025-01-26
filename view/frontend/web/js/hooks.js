@@ -193,21 +193,15 @@ define([
 
             // Here you can modify the instant search widgets configuration before InstantSearch is initialized
 
+            // For instance uncomment the following to see how you can easily modify the standard price slider
+            // const rangeSlider = allWidgetConfiguration.rangeSlider[0];
+            // rangeSlider.panelOptions.templates.header = `<div class="name price-slider-label">Price [This is a custom header]</div>`;
+            // rangeSlider.panelOptions.templates.footer = "[This is a custom footer]";
+
             // The algoliaBundle has been discontinued in the core extension and its use in frontend hooks is accordingly deprecated
             // If the bundle is still needed, a lightweight version can be accessed in 3.15.0
             // console.log("Algolia bundle:", algoliaBundle);
 
-            return allWidgetConfiguration;
-        }
-    );
-
-    algolia.registerHook(
-        "beforeWidgetInitialization",
-        function (allWidgetConfiguration) {
-            console.log("In hook method to modify instant search widgets:", allWidgetConfiguration);
-            const rangeSlider = allWidgetConfiguration.rangeSlider[0];
-            rangeSlider.panelOptions.templates.header = `<div class="name price-slider-label">Price slider customized</div>`;
-            rangeSlider.panelOptions.templates.footer = "Hi! I'm a panel footer 🦶";
             return allWidgetConfiguration;
         }
     );
