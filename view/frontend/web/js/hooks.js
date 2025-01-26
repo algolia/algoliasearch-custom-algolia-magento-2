@@ -11,6 +11,7 @@
 /**
  * Inject your dependencies as needed
  * e.g. algoliaRecentSearchesPluginLib are only supplied for demonstration of inclusion of the recent searches plugin
+ * You can specify additional dependencies via your local module's requirejs-config.js
  */
 define([
     'jquery',
@@ -33,13 +34,13 @@ define([
     //////////////////////////////////
 
     /**
-     * Autocomplete documentation: https://github.com/algolia/autocomplete 
+     * Autocomplete documentation: https://github.com/algolia/autocomplete
      */
 
     algolia.registerHook(
         "afterAutocompleteSources",
         (sources, searchClient) => {
-            console.log("In hook method to modify autocomplete data sources");
+            console.log("In hook method to modify Autocomplete data sources");
 
             // Use the global window variable `algoliaConfig` to see what has been configured in the system configuration
             console.log("Algolia config:", algoliaConfig);
@@ -78,9 +79,9 @@ define([
     );
 
     algolia.registerHook(
-        'afterAutocompletePlugins', 
+        'afterAutocompletePlugins',
         (plugins, searchClient) => {
-            console.log("In hook method to modify autocomplete plugins");
+            console.log("In hook method to modify Autocomplete plugins");
 
             // Modify an existing plugin like Query Suggestions (use Algolia instead of Magento)
             // See https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/query-suggestions/js/
@@ -153,9 +154,9 @@ define([
     );
 
     algolia.registerHook(
-        "afterAutocompleteOptions", 
+        "afterAutocompleteOptions",
         (options) => {
-            console.log("In hook method to modify autocomplete options");
+            console.log("In hook method to modify Autocomplete options");
 
             // Modify autocomplete options
             // options.openOnFocus = true;
@@ -176,7 +177,7 @@ define([
     algolia.registerHook(
         "beforeInstantsearchInit",
         function (instantsearchOptions) {
-            console.log("In method to modify instantsearch options");
+            console.log("In method to modify InstantSearch options");
 
             // Modify instant search options
 
@@ -187,13 +188,13 @@ define([
     algolia.registerHook(
         "beforeWidgetInitialization",
         function (allWidgetConfiguration, algoliaBundle) {
-            console.log("In hook method to modify instant search widgets");
+            console.log("In hook method to modify InstantSearch widgets");
 
             // Here you can modify the instant search widgets configuration before InstantSearch is initialized
 
             // The algoliaBundle has been discontinued in the core extension and its use in frontend hooks is accordingly deprecated
             // If the bundle is still needed, a lightweight version can be accessed in 3.15.0
-            console.log("Algolia bundle:", algoliaBundle);
+            // console.log("Algolia bundle:", algoliaBundle);
 
             return allWidgetConfiguration;
         }
@@ -203,16 +204,16 @@ define([
         "beforeInstantsearchStart",
         function (search) {
             console.log(
-                "In hook method to modify instant search instance before search started"
+                "In hook method to modify the InstantSearch instance before search has started"
             );
 
             // Modify instant search instance before search started
             // For instance you can add a secondary set of hits to your InstantSearch UI
-            search.addWidgets([
-                instantsearch.widgets.hits({
-                    container: '#custom-second-hits', // This element must be present in the DOM - can be added via wrapper.phtml
-                })
-            ]);
+            // search.addWidgets([
+            //     instantsearch.widgets.hits({
+            //         container: '#custom-second-hits', // This element must be present in the DOM - can be added via wrapper.phtml
+            //     })
+            // ]);
 
             return search;
         }
@@ -222,7 +223,7 @@ define([
         "afterInstantsearchStart",
         function (search) {
             console.log(
-                "In hook method to modify instant search instance after search started"
+                "In hook method to modify the InstantSearch instance after search has started"
             );
 
             // Modify instant search instance after search started

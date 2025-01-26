@@ -18,7 +18,8 @@ const config = {
             // Include your own hooks to handle front end events - see https://www.algolia.com/doc/integration/magento-2/customize/custom-front-end-events/
             algoliaHooks: 'Algolia_CustomAlgolia/js/hooks',
 
-            // Additional lib for recent searches plugin - OPTIONAL
+            // Additional lib for recent searches plugin
+            // How this might be used is demonstrated in hooks.js using `afterAutocompletePlugins` event
             algoliaRecentSearches: 'Algolia_CustomAlgolia/js/internals/autocomplete-plugin-recent-searches'
 
             ////////////////////////////////////
@@ -61,9 +62,11 @@ const config = {
             //////////////////////////////////
             //  OTHER AUTOCOMPLETE MIXINS   //
             //////////////////////////////////
-            "Algolia_AlgoliaSearch/js/autocomplete": {
-                "Algolia_CustomAlgolia/js/autocomplete-mixin": true,
-            },
+
+            // Uncomment the following to see a demonstration of how you can modify the logic behind how Autocomplete functions
+            // "Algolia_AlgoliaSearch/js/autocomplete": {
+            //     "Algolia_CustomAlgolia/js/autocomplete-mixin": true,
+            // },
 
             //////////////////////////////////
             //     INSTANTSEARCH MIXINS     //
@@ -83,9 +86,10 @@ const config = {
             //     "Algolia_CustomAlgolia/js/internals/template-engine-mixin": true,
             // },
 
-            "Algolia_AlgoliaSearch/js/internals/common": {
-                "Algolia_CustomAlgolia/js/internals/common-mixin": true,
-            },
+            // Uncomment the following mixin to change the behavior of common util functions
+            // "Algolia_AlgoliaSearch/js/internals/common": {
+            //     "Algolia_CustomAlgolia/js/internals/common-mixin": true,
+            // },
         },
     }
 };

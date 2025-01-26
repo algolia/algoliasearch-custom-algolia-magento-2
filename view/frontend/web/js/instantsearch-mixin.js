@@ -1,4 +1,7 @@
 // SAMPLE INSTANTSEARCH MIXIN
+// These mixins demonstrate ways that you can override behaviors and configurations in the core InstantSearch implementation
+// More mixin support to come...
+
 define(['algoliaHoganLib'], function (Hogan) {
     "use strict";
 

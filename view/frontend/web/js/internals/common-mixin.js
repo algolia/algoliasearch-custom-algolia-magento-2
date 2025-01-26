@@ -1,4 +1,6 @@
 // SAMPLE COMMON LIB MIXIN
+// These mixins demonstrate ways that you can modify the behavior of core utility libraries that Algolia uses under the hood
+
 define(function () {
     "use strict";
 
@@ -6,7 +8,7 @@ define(function () {
         const mixin = {
             isMobile() {
                 console.log("Mobile user agent?", target.isMobileUserAgent());
-                console.log("Touch device?", target.isTouchDevice()); //ignore this criteria
+                console.log("Touch device?", target.isTouchDevice()); // This example implementation ignores this criteria for isMobile
                 return target.isMobile();
             },
 
